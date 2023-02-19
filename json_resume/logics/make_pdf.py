@@ -1,4 +1,4 @@
-from attrdict import AttrDict
+from addict import Dict
 from jinja2 import Template
 import pdfkit
 
@@ -24,7 +24,7 @@ def get_html_css(theme):
         return handle_remote_theme(theme)
 
 def makepdf(resume_raw, theme=None):
-    resume = AttrDict(resume_raw)
+    resume = Dict(resume_raw)
 
     if theme == None:
         theme = resume.meta.theme
