@@ -2,7 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=flask,python
 
 .DS_Store
-*/.DS_Store
+**/.DS_Store
 data
 output
 
