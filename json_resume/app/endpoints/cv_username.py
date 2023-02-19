@@ -17,7 +17,7 @@ def cv_username(username):
         file,
         mimetype='application/pdf',
         headers = {
-            'Content-Disposition' : 'attachment;filename=resume.pdf'
+            'Content-Disposition' : 'inline;filename=resume.pdf'
         }
     )
 
