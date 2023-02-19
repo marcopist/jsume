@@ -13,9 +13,10 @@ RUN apt-get install -y wkhtmltopdf
 COPY . project
 WORKDIR /project
 
-RUN pip install .
+RUN python -m pip install -e .
 
 # final configuration
 EXPOSE 8000
 
-CMD echo working
+CMD python json_resume
+#CMD python -m gunicorn --worker-tmp-dir /dev/shm json_resume.wsgi:app
