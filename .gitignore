@@ -5,6 +5,7 @@
 **/.DS_Store
 data
 output
+rundocker.bash
 
 ### Flask ###
 instance/*
@@ -262,3 +263,4 @@ poetry.toml
 .ruff_cache/
 
 # End of https://www.toptal.com/developers/gitignore/api/flask,python
+templates/.DS_Store
