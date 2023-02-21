@@ -7,8 +7,8 @@ local_templates = [
 ]
 
 def handle_local_theme(theme):
-    html_path = f'templates/{theme}/resume.html'
-    css_path = f'templates/{theme}/resume.css'
+    html_path = f'themes/{theme}/resume.html'
+    css_path = f'themes/{theme}/resume.css'
 
     return html_path, css_path
     

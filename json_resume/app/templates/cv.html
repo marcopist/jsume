@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your custom cv</title>
+</head>
+<body>
+  <input type="text" id="input-box">
+  <button onclick="run()">Run</button>
+  
+  <script>
+    function run() {
+      var input = document.getElementById("input-box").value;
+      window.location.href = "/cv/" + input;
+    }
+  </script>
+</body>
+</html>
