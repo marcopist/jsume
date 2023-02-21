@@ -1,16 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Your custom cv</title>
+  <title>My Page</title>
+  <style>
+    /* Set body to use Flexbox layout */
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #F6F6F6;
+      font-family: Arial, sans-serif;
+    }
+    
+    /* Style the input and button */
+    input[type="text"] {
+      font-size: 24px;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+    button {
+      font-size: 24px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background-color: #3E8E41;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <input type="text" id="input-box">
-  <button onclick="run()">Run</button>
+  <div>
+    <input type="text" id="input-box" onkeyup="onEnter(event)">
+    <button onclick="run()">Run</button>
+  </div>
   
   <script>
     function run() {
       var input = document.getElementById("input-box").value;
       window.location.href = "/cv/" + input;
+    }
+    
+    function onEnter(event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("input-box").blur();
+        run();
+      }
     }
   </script>
 </body>
