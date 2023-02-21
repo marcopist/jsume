@@ -5,7 +5,7 @@
 **/.DS_Store
 data
 output
-rundocker.bash
+rundocker.sh
 
 ### Flask ###
 instance/*
