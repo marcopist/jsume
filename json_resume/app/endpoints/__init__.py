@@ -1,2 +1,2 @@
-from .username import route_cv_username
-from .home import route_cv
+from .username import route_username
+from .home import route_home
