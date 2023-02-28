@@ -1,5 +1,4 @@
 from addict import Dict
-from jinja2 import Template
 import pdfkit
 from .github import get_theme_from_gist
 from jinja2.sandbox import SandboxedEnvironment
