@@ -13,7 +13,7 @@ RUN apt-get install -y wkhtmltopdf
 COPY . project
 WORKDIR /project
 
-RUN python -m pip install -e .
+RUN python -m pip install .
 
 # final configuration
 EXPOSE 8000
