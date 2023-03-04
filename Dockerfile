@@ -10,7 +10,11 @@ RUN apt-get update
 RUN apt-get install -y wkhtmltopdf
 
 # install app
-COPY . project
+COPY json_resume project/json_resume
+COPY pyproject.toml project/pyproject.toml
+COPY setup.cfg project/setup.cfg
+COPY setup.py project/setup.py
+COPY version.txt project/version.txt
 WORKDIR /project
 
 RUN python -m pip install .
