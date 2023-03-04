@@ -14,6 +14,8 @@ COPY . project
 COPY /tests/utils/config/policy.xml /etc/ImageMagick-6/policy.xml
 WORKDIR /project
 
+ENV MAGICK_CONFIGURE_PATH /etc/ImageMagick-6/policy.xml
+
 RUN python -m pip install .
 RUN python -m pip install -r tests/requirements.txt
 
