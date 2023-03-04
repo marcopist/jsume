@@ -1,32 +1,62 @@
 import requests as re
 import json
+from json_resume.app.app import app
 
-def get_gists(username):
+
+def get_gist(username: str, file: str) -> str | None:
+    """Grabs a the content of a Github gist called "file"
+    published by an user called "username"
+
+    Args:
+        username (str): The name of the Github organisation or user
+            who published the gist
+        file (str): the name of the published gist
+
+    Returns:
+        str | None: the raw file from Github if it exists,
+            otherwise it returns None 
+    """
     res = re.get(
         f"https://api.github.com/users/{username}/gists"
     )
-    return json.loads(res.text)
+    ghres = json.loads(res.text)
 
-def get_resume_gist_url(github_resp):
-    if len(github_resp) > 0:
-        files = github_resp[0]['files']
+    url = None
+    for gist in ghres:
+        published_files = gist['files']
+        if file in published_files:
+            url = published_files[file]['raw_url']
+            break
 
-        if 'resume.json' in files:
-            return files['resume.json']['raw_url']
-
-    return None
-
-def get_raw_from_url(url):
-
-    if url is None:
+    if not url:
         return None
     
-    res = re.get(url)
-    data = json.loads(res.text)
-    return data
+    return re.get(url).text
 
-def get_resume_from_username(username):
-    gists = get_gists(username)
-    resume_url = get_resume_gist_url(gists)
-    resume = get_raw_from_url(resume_url)
-    return resume
+def get_theme(author: str, theme: str) -> str | None:
+    """Grabs a the "theme.jinja" published as a gist by user "author"
+
+    Args:
+        author (str): The name of the Github organisation or user
+            who published the theme
+        theme (str): the name of the theme
+
+    Returns:
+        str | None: the Jinja template of the theme if it exists,
+            otherwise it returns None 
+    """
+    return get_gist(author, theme + ".jinja")
+
+def get_resume(username: str) -> str | None:
+    """Grabs a the "resume.json" published as a gist by user "username"
+
+
+    Args:
+        username (str): The name of the Github organisation or user
+            who published the resume
+
+    Returns:
+        str | None: the parsed resume.json if it exists,
+            otherwise it returns None 
+    """
+    return json.loads(get_gist(username, 'resume.json'))

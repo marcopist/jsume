@@ -1,43 +1,29 @@
 from addict import Dict
-from jinja2 import Template
 import pdfkit
+from .github import get_theme
+from jinja2.sandbox import SandboxedEnvironment
+from json_resume.app.app import app
 
-local_templates = [
-    'basic'
-]
+sandbox = SandboxedEnvironment()
 
-def handle_local_theme(theme):
-    html_path = f'themes/{theme}/resume.html'
-    css_path = f'themes/{theme}/resume.css'
-
-    return html_path, css_path
-    
-
-def handle_remote_theme(theme):
-    # TODO: implement
-    return handle_local_theme('basic')
-
-def get_html_css(theme):
-    if theme in local_templates:
-        return handle_local_theme(theme)
-    else:
-        return handle_remote_theme(theme)
-
-def makepdf(resume_raw, theme=None):
+def makepdf(resume_raw, author=None, theme=None):
     resume = Dict(resume_raw)
+    app.logger.debug(f"{resume=}")
 
-    if theme == None:
+    if not (theme and author):
+        author = resume.meta.author
         theme = resume.meta.theme
 
-    html_path, css_path = get_html_css(theme)
+    app.logger.info(f"Theme author {author}")
+    app.logger.info(f"Theme name = {theme}")
 
-    with open(html_path) as f:
-        template = Template(f.read())
+    template = get_theme(author, theme)
+    app.logger.debug(f"{template=}")
 
-    rendered = template.render(resume = resume)
+    rendered = sandbox.from_string(template).render(resume = resume)
+    app.logger.debug(f"{rendered=}")
 
     return pdfkit.from_string(
         rendered,
-        css=css_path,
         options={"enable-local-file-access": ""}
     )
