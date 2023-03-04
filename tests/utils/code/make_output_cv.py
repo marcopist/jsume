@@ -13,5 +13,8 @@ def safe_get_gist(username, file):
     return None
 
 @patch("json_resume.logics.github.get_gist", safe_get_gist)
-def test_route_username():
-    return route_username('test_username')
+def make_test_pdf():
+    with open('tests/utils/files/outputs/sample-resume.pdf', 'wb') as f:
+        f.write(route_username('test_username').data)
+
+make_test_pdf()
