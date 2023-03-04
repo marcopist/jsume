@@ -1,45 +1,44 @@
 import requests as re
 import json
-from ..app.app import app
+from json_resume.app.app import app
 
-def get_gists(username):
+
+def get_gist(username: str, file: str) -> str | None:
+    """Grabs a the content of a Github gist called "file"
+    published by an user called "username"
+
+    Args:
+        username (str): _description_
+        file (str): _description_
+
+    Returns:
+        _type_: _description_
+    """
     res = re.get(
         f"https://api.github.com/users/{username}/gists"
     )
-    return json.loads(res.text)
+    ghres = json.loads(res.text)
 
-def get_resume_gist_url(github_resp):
-    for gist in github_resp:
+    url = None
+    for gist in ghres:
+        published_files = gist['files']
+        if file in published_files:
+            url = published_files[file]['raw_url']
+            break
 
-        files = gist['files']
-        if 'resume.json' in files:
-            return files['resume.json']['raw_url']
-
-    return None
-
-def get_raw_from_url(url):
-
-    if url is None:
+    if not url:
         return None
     
-    res = re.get(url)
-    data = json.loads(res.text)
-    return data
+    return re.get(url).text
+
+def get_theme(author, theme):
+    return get_gist(author, theme + ".jinja")
+
+def get_resume(username):
+    return get_gist(username, "resume.json")
+
+
+###### Old and irrelevant
 
 def get_resume_from_username(username):
-    gists = get_gists(username)
-    app.logger.info(f"Found {len(gists)} gists  for username {username}")
-    resume_url = get_resume_gist_url(gists)
-    app.logger.info(f"Found {resume_url=} ")
-    resume = get_raw_from_url(resume_url)
-    return resume
-
-def get_theme_from_gist(username, theme):
-    github_resp = get_gists(username)
-    if len(github_resp) > 0:
-        files = github_resp[0]['files']
-
-        if f'{theme}.jinja' in files:
-            return re.get(files[f'{theme}.jinja']['raw_url']).text
-
-    return None
+    return json.loads(get_gist(username, 'resume.json'))
