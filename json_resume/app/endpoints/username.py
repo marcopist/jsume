@@ -11,7 +11,7 @@ def route_username(username):
 
 
     if resume is None:
-        app.logger.info(f"Can't find gist for {username=}")
+        app.logger.warn(f"Can't find gist for {username=}")
         return ''
 
     file =  makepdf(resume)
