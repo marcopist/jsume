@@ -12,7 +12,6 @@ def safe_get_gist(username, file):
             return f.read()
     return None
 
-@patch("json_resume.logics.github.get_gist")
-def test_route_username(mock_get_gist):
-    mock_get_gist.side_effects = safe_get_gist
+@patch("json_resume.logics.github.get_gist", safe_get_gist)
+def test_route_username():
     return route_username('test_username')

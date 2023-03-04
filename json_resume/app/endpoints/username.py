@@ -1,13 +1,14 @@
 from flask import Response
 
 from json_resume.app.app import app
-from json_resume.logics.github import get_resume_from_username
+from json_resume.logics.github import get_resume
 from json_resume.logics.make_pdf import makepdf
 
 @app.route("/<username>")
 def route_username(username):
     app.logger.info(f"{username=}")
-    resume = get_resume_from_username(username)
+    resume = get_resume(username)
+
 
     if resume is None:
         app.logger.info(f"Can't find gist for {username=}")
