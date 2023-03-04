@@ -7,15 +7,15 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # install app dependencies
 RUN apt-get update
-RUN apt-get install -y wkhtmltopdf
+RUN apt-get install -y wkhtmltopdf imagemagick
 
 # install app
 COPY . project
+COPY /tests/utils/config/policy.xml /etc/ImageMagick-6/policy.xml
 WORKDIR /project
 
 RUN python -m pip install .
+RUN python -m pip install -r tests/requirements.txt
 
 # final configuration
-EXPOSE 8000
-
-CMD ["gunicorn"  , "-b", "0.0.0.0:8000", "json_resume.wsgi:app"]
+CMD python -m pytest
