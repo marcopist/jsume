@@ -8,5 +8,5 @@ Use the `Dockerfile` attached.
 
 # The app is live!
 Find it at:
-* `dev` branch: (here)[dev-resume.pleonastico.com]
+* `dev` branch: [dev-resume.pleonastico.com](dev-resume.pleonastico.com)
 * `main` branch: TBF
