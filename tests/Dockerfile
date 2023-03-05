@@ -18,7 +18,7 @@ ENV MAGICK_CONFIGURE_PATH /etc/ImageMagick-6/policy.xml
 
 # Installing package and testing requirements
 RUN python -m pip install .
-RUN python -m pip install -r tests/requirements.txt
+RUN python -m pip install tox
 
 # Generating pdf to be used in tests
 RUN python tests/utils/code/make_output_cv.py
