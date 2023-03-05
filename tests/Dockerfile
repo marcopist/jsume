@@ -19,5 +19,7 @@ ENV MAGICK_CONFIGURE_PATH /etc/ImageMagick-6/policy.xml
 RUN python -m pip install .
 RUN python -m pip install -r tests/requirements.txt
 
+RUN python tests/utils/code/make_output_cv.py
+
 # final configuration
 CMD python -m pytest
