@@ -26,4 +26,4 @@ RUN python tests/utils/code/make_output_cv.py
 # No port needs to be exposed for tests
 
 # Test command
-CMD python -m pytest
+CMD tox -c tox.ini

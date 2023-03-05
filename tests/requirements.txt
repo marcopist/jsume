@@ -1,4 +1,1 @@
-flake8
-pytest
-coverage
-wand
+tox
