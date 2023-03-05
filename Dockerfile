@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM python:3.11-slim
 
-# To prevent bash from trying to interact with me
+# To prevent apt from trying to interact with me
 ARG DEBIAN_FRONTEND=noninteractive
 
 # install app dependencies
