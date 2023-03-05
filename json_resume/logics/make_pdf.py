@@ -8,7 +8,8 @@ from json_resume.app.app import app
 
 sandbox = SandboxedEnvironment()
 
-def makepdf(resume_raw : Dict, author: str = None, theme: str = None) -> bytes:
+
+def makepdf(resume_raw: Dict, author: str = None, theme: str = None) -> bytes:
     """Returns a rendered pdf based on a json resume `resume_raw`.
     Extracts the theme information from the `resume_raw` input, but also
     tolerates explicitly defined temem through the `author` and `theme` arguments.
@@ -36,10 +37,7 @@ def makepdf(resume_raw : Dict, author: str = None, theme: str = None) -> bytes:
     template = get_theme(author, theme)
     app.logger.debug(f"{template=}")
 
-    rendered = sandbox.from_string(template).render(resume = resume)
+    rendered = sandbox.from_string(template).render(resume=resume)
     app.logger.debug(f"{rendered=}")
 
-    return pdfkit.from_string(
-        rendered,
-        options={"enable-local-file-access": ""}
-    )
+    return pdfkit.from_string(rendered, options={"enable-local-file-access": ""})
