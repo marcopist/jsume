@@ -4,51 +4,54 @@ from json_resume.app.app import app
 
 
 def get_gist(username: str, file: str) -> str | None:
-    """Grabs a the content of a Github gist called "file"
-    published by an user called "username"
+    """Grabs a the content of a Github Gist called `file`
+        published by a user called `username` if it exists.
+        Otherwise it returns `None`.
 
     Args:
         username (str): The name of the Github organisation or user
-            who published the gist
-        file (str): the name of the published gist
+            who published the Gist.
+        file (str): The name of the published Gist.
 
     Returns:
         str | None: the raw file from Github if it exists,
-            otherwise it returns None 
+            otherwise it returns `None`.
     """
-    res = re.get(
-        f"https://api.github.com/users/{username}/gists"
-    )
+    res = re.get(f"https://api.github.com/users/{username}/gists")
     ghres = json.loads(res.text)
 
     url = None
     for gist in ghres:
-        published_files = gist['files']
+        published_files = gist["files"]
         if file in published_files:
-            url = published_files[file]['raw_url']
+            url = published_files[file]["raw_url"]
             break
 
     if not url:
         return None
-    
+
     return re.get(url).text
 
+
 def get_theme(author: str, theme: str) -> str | None:
-    """Grabs a the "theme.jinja" published as a gist by user "author"
+    """Grabs the `theme`.jinja published as a Github Gist by user `author`
+        if it exists. Otherwise it returns `None`.
 
     Args:
         author (str): The name of the Github organisation or user
-            who published the theme
-        theme (str): the name of the theme
+            who published the theme.
+        theme (str): The name of the theme.
 
     Returns:
-        str | None: the Jinja template of the theme if it exists,
-            otherwise it returns None 
+        str | None: The Jinja template of the theme if it exists,
+            otherwise it returns None.
     """
     return get_gist(author, theme + ".jinja")
 
+
 def get_resume(username: str) -> str | None:
-    """Grabs a the "resume.json" published as a gist by user "username"
+    """Grabs the resume.json published as a Gist by user `username`
+        if it exists. Otherwise it returns `None`.
 
 
     Args:
@@ -56,7 +59,9 @@ def get_resume(username: str) -> str | None:
             who published the resume
 
     Returns:
-        str | None: the parsed resume.json if it exists,
-            otherwise it returns None 
+        str | None: The parsed resume.json if it exists,
+            otherwise it returns None.
     """
-    return json.loads(get_gist(username, 'resume.json'))
+    gist = get_gist(username, "resume.json")
+    if gist:
+        return json.loads(gist)
