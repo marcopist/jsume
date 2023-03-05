@@ -1,5 +1,10 @@
 name: Docker Image CI
 
+defaults:
+  run:
+    shell: bash
+    working-directory: .
+    
 on:
   push:
     branches: [ "main" ]
