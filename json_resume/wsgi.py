@@ -4,5 +4,5 @@ import logging
 
 
 if __name__ == "__main__":
-   app.logger.setLevel(logging.INFO)
-   app.run()
+    app.logger.setLevel(logging.INFO)
+    app.run()

@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+defaults:
+  run:
+    shell: bash
+    working-directory: .
+    
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+    
+
+jobs:
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file tests/Dockerfile --tag json-resume-test
+    - name: Runs test suite
+      run: docker run json-resume-test
