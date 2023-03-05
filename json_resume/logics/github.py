@@ -1,3 +1,6 @@
+"""This module contains the integration logics with Github
+which are used to collect resumes and themes."""
+
 import requests as re
 import json
 from json_resume.app.app import app
@@ -56,11 +59,11 @@ def get_resume(username: str) -> str | None:
 
     Args:
         username (str): The name of the Github organisation or user
-            who published the resume
+            who published the resume.
 
     Returns:
         str | None: The parsed resume.json if it exists,
-            otherwise it returns None.
+            otherwise it returns `None`.
     """
     gist = get_gist(username, "resume.json")
     if gist:
