@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+
+<html>
+
+    <head>
+        
+        <style>
+            body {
+                margin: 40px;
+                font-family: "Adobe Caslon Pro", "Minion Pro", serif;
+                font-size: 12pt;
+            }
+
+            header {
+                font-family: "Droid Serif", serif;
+                padding-bottom: 10px;
+            }
+
+            header h1 {
+                font-size: 20pt;
+                letter-spacing: 2pt;
+                border-bottom: 1px solid black;
+                margin-bottom: 4px;
+                float: center;
+            }
+
+            header span {
+                font-size: 10pt;
+                float: center;
+            }
+
+            section h2 {
+                font-family: "Droid Serif", serif;
+                font-size: 14pt;
+            }
+
+            section p {
+                margin-left: 40px;
+            }
+
+            section.coverletter {
+                margin-top: 40px;
+            }
+
+            section.coverletter p {
+                margin-left: 0px;
+            }
+
+            section ul {
+                list-style-type: circle;
+            }
+
+            .jobtable {
+                display: table;
+                width: 100%;
+                border-bottom: 1px solid black;
+                margin-left: 20px;
+            }
+
+            .edtable {
+                display: table;
+                width: 100%;
+                margin-left: 20px;
+                padding-bottom: 15px;
+            }
+
+            .skillstable {
+                display: table;
+                width: 100%;
+            }
+
+            .table {
+                display: table;
+                margin-left: 20px;
+            }
+
+            .tablerow {
+                display: table-row;
+            }
+
+            .jobtitle {
+                display: table-cell;
+                font-style: italic;
+            }
+
+            .right {
+                display: table-cell;
+                text-align: right;
+            }
+
+            .cell {
+                display: table-cell;
+            }
+
+            .onlinecell {
+                font-style: italic;
+                padding-right: 10px;
+            }
+
+            .urlcell {
+                display: table-cell;
+                letter-spacing: 1px;
+            }
+
+            .pagebreak {
+                page-break-before: always;
+            }
+        </style>
+        <link rel="stylesheet" href="https://use.typekit.net/bsy3tps.css">
+
+
+        <meta charset="UTF-8">
+        <title>{{resume.basics.name}}</title>
+    </head>
+
+    <body>
+        <header id="info">
+            <h1>
+                {{resume.basics.name}}
+            </h1>
+            <span>
+                {{resume.basics.location.city}}, {{resume.basics.location.countryCode}} &bull;
+                {{resume.basics.phone}} &bull;
+                {{resume.basics.email}}
+            </span>
+        </header>
+        <section id="employment">
+            <h2>Employment</h2>
+            {% for experience in resume.work %}
+            <section>
+                <div class="jobtable">
+                    <div class="tablerow">
+                        <span class="jobtitle">{{experience.position}}</span>
+                        <span class="right">{{experience.startDate}} &bull; {{experience.endDate if experience.endDate else 'Present'}}</span>
+                    </div>
+                    <div class="tablerow">
+                        <span>{{experience.name}}</span>
+                        <span class="right">{{experience.location.city}}, {{experience.location.countryCode}}</span>
+                    </div>
+                </div>
+                <ul>
+                    {% for bullet in experience.highlights %}
+                    <li>{{bullet}};</li>
+                    {% endfor %}
+                </ul>
+            </section>
+            {% endfor %}
+        <section id="education">
+            <h2>Education</h2>
+
+            {% for uni in resume.education %}
+            <section>
+                <div class="jobtable">
+                    <div class="tablerow">
+                        <span class="jobtitle">{{uni.studyType}} &bull; {{uni.area}}</span>
+                        <span class="right">{{uni.startDate}} &bull; {{uni.endDate if uni.endDate else 'Present'}}</span>
+                    </div>
+                    <div class="tablerow">
+                        <span>{{uni.institution}}</span>
+                        <span class="right">{{uni.location.city}}, {{uni.location.countryCode}}</span>
+                    </div>
+                </div>
+                <ul>
+                    {% for bullet in uni.highlights %}
+                    <li>{{bullet}};</li>
+                    {% endfor %}
+                </ul>
+                </div>
+            </div>
+            {%endfor%}
+        </section>
+        <section id="skills">
+        <h2> Skills </h2>
+            <b>Languages</b>
+            {% for lang in resume.languages %}
+                {{lang.language}} ({{lang.fluency}})
+                {% if not loop.last %}
+                &bull;
+                {%endif%}
+            {%endfor%}
+        </section>
+    </body>
+
+</html>

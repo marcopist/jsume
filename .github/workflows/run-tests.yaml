@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Run test suite
 
 defaults:
   run:
@@ -7,9 +7,9 @@ defaults:
     
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "dev" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "dev" ]
   workflow_dispatch:
     
 
@@ -22,6 +22,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file tests/Dockerfile --tag json-resume-test:$(date +%s)
-    - name: Runs test suire
-      run: docker run json-resume-test:$(date +%s)
+      run: docker build . --file tests/Dockerfile --tag json-resume-test
+    - name: Runs test suite
+      run: docker run json-resume-test
