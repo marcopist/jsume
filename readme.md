@@ -45,4 +45,8 @@ This is a containerised application (see `/Dockerfile`). Using containers is mad
 
 Similarly, the unit testing suite is containerised (see `/tests/Dockerfile`) as it requires `imagemagick` to compare PDFs pixel-wise - in addition to `wkhtmltopdf` to generate them.
 
-In general the source code is split up into two main subpackages. `logics` contains the business logics for pulling data - mainly from GitHub - and for generating PDFs. `app` wraps the `logics` and exposes them as an API.  
+In general the source code is split up into two main subpackages. `logics` contains the business logics for pulling data - mainly from GitHub - and for generating PDFs. `app` wraps the `logics` and exposes them as an API.
+
+This service is deployed to Google Cloud Run. Continuous Deployment is activated, so on every push to `main` the container is re-built & deployed.
+
+Unit testing is run at every pull request using Github workflows (see `/tests/Dockerfile` and `/.github/workflows/run-tests.yaml`).
