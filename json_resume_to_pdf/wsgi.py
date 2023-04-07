@@ -1,5 +1,5 @@
-from json_resume.app.app import app
-from json_resume.app.endpoints import *
+from json_resume_to_pdf.app.app import app
+from json_resume_to_pdf.app.endpoints import *
 import logging
 
 

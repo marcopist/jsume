@@ -1,8 +1,8 @@
 from flask import Response
 
-from json_resume.app.app import app
-from json_resume.logics.github import get_resume
-from json_resume.logics.make_pdf import makepdf
+from json_resume_to_pdf.app.app import app
+from json_resume_to_pdf.logics.github import get_resume
+from json_resume_to_pdf.logics.make_pdf import makepdf
 
 
 @app.route("/<username>")

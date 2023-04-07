@@ -3,7 +3,7 @@ which are used to collect resumes and themes."""
 
 import requests as re
 import json
-from json_resume.app.app import app
+from json_resume_to_pdf.app.app import app
 
 
 def get_gist(username: str, file: str) -> str | None:
