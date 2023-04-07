@@ -1,4 +1,4 @@
-from json_resume.logics.github import get_gist
+from json_resume_to_pdf.logics.github import get_gist
 
 
 def test_get_gist():

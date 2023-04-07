@@ -9,7 +9,7 @@ RUN apt-get update
 RUN apt-get install -y wkhtmltopdf
 
 # Install app
-COPY json_resume project/json_resume
+COPY json_resume_to_pdf project/json_resume_to_pdf
 COPY pyproject.toml project/pyproject.toml
 COPY setup.cfg project/setup.cfg
 COPY setup.py project/setup.py
@@ -22,4 +22,4 @@ RUN python -m pip install .
 EXPOSE 8000
 
 # Run command
-CMD ["gunicorn"  , "-b", "0.0.0.0:8000", "json_resume.wsgi:app"]
+CMD ["gunicorn"  , "-b", "0.0.0.0:8000", "json_resume_to_pdf.wsgi:app"]

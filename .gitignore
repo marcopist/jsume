@@ -6,7 +6,7 @@
 data
 output
 rundocker.sh
-json_resume/devserver.py
+**/devserver.py
 sandbox.py
 
 ### Flask ###
