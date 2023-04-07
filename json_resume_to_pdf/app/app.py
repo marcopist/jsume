@@ -3,3 +3,5 @@
 from flask import Flask
 
 app = Flask("json_resume_to_pdf")
+
+logger = app.logger

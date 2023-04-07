@@ -1,6 +1,6 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-# .JSON Resume → .PDF
+# resume.json → resume.pdf
 
 **[TOTALLY A WORK IN PROGRESS!]** It does work. But kind of. And everything might get completely reengineered at any point. 🙃
 
