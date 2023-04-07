@@ -36,6 +36,8 @@ Check out my example theme: [`marcopist/basic.jinja`](https://gist.githubusercon
 ### Contribute to the service
 Simply make a pull request. I will review it. See the tech specs below on some general architecture notes.
 
+There is continuous integration that runs the unit testing suite whenever any pull request is submitted. See `tests/Dockerfile` and `.github/workflows/run-tests.yaml` for details.
+
 
 ## Service architecture & design
 
