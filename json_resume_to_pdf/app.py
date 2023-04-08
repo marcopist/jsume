@@ -1,4 +1,4 @@
-"""This module contains the main Flask app: `app`"""
+"""This module contains the main Flask app: `app`."""
 
 from flask import Flask
 

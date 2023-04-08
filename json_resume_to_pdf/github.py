@@ -69,7 +69,7 @@ def get_resume(username: str) -> str | None:
     gist = get_gist(username, "resume.json")
     if gist:
         return gist
-    
+
 
 def parse_resume(resume: str) -> dict:
     """Parses the resume json and converts the dates to date objects.
@@ -81,6 +81,7 @@ def parse_resume(resume: str) -> dict:
         dict: The parsed resume json.
     """
     return json.loads(resume, object_hook=date_hook)
+
 
 def date_hook(json_dict):
     for (key, value) in json_dict.items():

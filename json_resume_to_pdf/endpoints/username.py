@@ -1,3 +1,5 @@
+"""This module contains the route for the username endpoint."""
+
 from flask import Response
 
 from json_resume_to_pdf.app import app, LOGGER
@@ -8,6 +10,13 @@ from json_resume_to_pdf.validate_schema import validate_schema
 
 @app.route("/<username>")
 def route_username(username):
+    """Returns a pdf of the resume for the given username.
+
+    args:
+        username (str): The username to get the resume for.
+
+    returns:
+        Response: The pdf of the resume."""
     LOGGER.info(f"{username=}")
     resume = get_resume(username)
 
@@ -17,7 +26,9 @@ def route_username(username):
 
     validation = validate_schema(resume)
     if validation != "":
-        LOGGER.warning(f"Resume does not conform to schema for {username=} \n {validation=}")
+        LOGGER.warning(
+            f"Resume does not conform to schema for {username=} \n {validation=}"
+        )
         return validation
 
     parsed_resume = parse_resume(resume)

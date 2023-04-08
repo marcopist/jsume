@@ -1,5 +1,6 @@
 """Module containing the logics to build the pdf from
-a template theme and a parsed resume dictionary"""
+a template theme and a parsed resume dictionary."""
+
 from addict import Dict
 import pdfkit
 from .github import get_theme
