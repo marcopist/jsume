@@ -1,6 +1,6 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-# .JSON Resume → .PDF
+# resume.JSON → resume.PDF
 
 **[TOTALLY A WORK IN PROGRESS!]** It does work. But kind of. And everything might get completely reengineered at any point. 🙃
 
@@ -26,7 +26,7 @@ As simple as:
 ## What an example looks like
 - My [`resume.json`](https://gist.githubusercontent.com/marcopist/619a7ed8bbcde6efa7df28e509d319e7/raw/resume.json)
 - My theme: [`marcopist/basic.jinja`](https://gist.githubusercontent.com/marcopist/1e390f2df03cad92ba21ae78129f679d/raw/basic.jinja)
-- My rendered [cv.marcopist.com/marcopist](cv.marcopist.com/marcopist)
+- My rendered [cv.marcopist.com/marcopist](http://cv.marcopist.com/marcopist)
 
 ## How to contribute
 
