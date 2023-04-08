@@ -4,7 +4,7 @@ from addict import Dict
 import pdfkit
 from .github import get_theme
 from jinja2.sandbox import SandboxedEnvironment
-from json_resume_to_pdf.app.app import logger
+from json_resume_to_pdf.app import LOGGER
 
 sandbox = SandboxedEnvironment()
 
@@ -25,19 +25,13 @@ def makepdf(resume_raw: Dict, author: str = None, theme: str = None) -> bytes:
         bytes: The bytes of the generated pdf.
     """
     resume = Dict(resume_raw)
-    logger.debug(f"{resume=}")
 
     if not (theme and author):
         author = resume.meta.author
         theme = resume.meta.theme
 
-    logger.info(f"Theme author = {author}")
-    logger.info(f"Theme name = {theme}")
-
     template = get_theme(author, theme)
-    logger.debug(f"{template=}")
 
     rendered = sandbox.from_string(template).render(resume=resume)
-    logger.debug(f"{rendered=}")
 
     return pdfkit.from_string(rendered, options={"enable-local-file-access": ""})

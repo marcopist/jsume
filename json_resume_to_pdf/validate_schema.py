@@ -1,6 +1,5 @@
 import jsonschema
 import json
-import json_resume_to_pdf.app.app as logger
 
 ## Validate the schema
 def validate_schema(resume_json):
@@ -20,5 +19,4 @@ def validate_schema(resume_json):
         jsonschema.validate(resume_json, schema)
         return ""
     except jsonschema.exceptions.ValidationError as e:
-        logger.error(e.message)
         return e.message

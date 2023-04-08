@@ -23,4 +23,4 @@ RUN python -m pip install .
 EXPOSE 8000
 
 # Run command
-CMD ["gunicorn"  , "-b", "0.0.0.0:8000", "json_resume_to_pdf.app.wsgi:app"]
+CMD ["gunicorn"  , "-b", "0.0.0.0:8000", "json_resume_to_pdf.wsgi:app"]
