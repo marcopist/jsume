@@ -26,7 +26,7 @@ As simple as:
 ## What an example looks like
 - My [`resume.json`](https://gist.githubusercontent.com/marcopist/619a7ed8bbcde6efa7df28e509d319e7/raw/resume.json)
 - My theme: [`marcopist/basic.jinja`](https://gist.githubusercontent.com/marcopist/1e390f2df03cad92ba21ae78129f679d/raw/basic.jinja)
-- My rendered [`cv.PDF`](https://json-resume-to-PDF-7dkwlpyqqa-ew.a.run.app/marcopist)
+- My rendered [cv.marcopist.com/marcopist](cv.marcopist.com/marcopist)
 
 ## How to contribute
 
