@@ -2,7 +2,7 @@ import jsonschema
 import json
 
 ## Validate the schema
-def validate_schema(resume_json):
+def validate_schema(resume_str):
     """Validates the schema of the resume json.
     Returns True if the schema is valid, False otherwise.
     
@@ -14,9 +14,11 @@ def validate_schema(resume_json):
     """
     with open('resources/schema.json') as f:
         schema = json.load(f)
+
+    resume = json.loads(resume_str)
     
     try:
-        jsonschema.validate(resume_json, schema)
+        jsonschema.validate(resume, schema)
         return ""
     except jsonschema.exceptions.ValidationError as e:
         return e.message

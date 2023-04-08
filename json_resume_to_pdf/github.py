@@ -3,6 +3,7 @@ which are used to collect resumes and themes."""
 
 import requests as re
 import json
+import datetime
 from json_resume_to_pdf.app import LOGGER
 
 
@@ -67,4 +68,23 @@ def get_resume(username: str) -> str | None:
     """
     gist = get_gist(username, "resume.json")
     if gist:
-        return json.loads(gist)
+        return gist
+    
+
+def parse_resume(resume: str) -> dict:
+    """Parses the resume json and converts the dates to date objects.
+
+    Args:
+        resume (str): The resume json.
+
+    Returns:
+        dict: The parsed resume json.
+    """
+    return json.loads(resume, object_hook=date_hook)
+
+def date_hook(json_dict):
+    for (key, value) in json_dict.items():
+        if key in {"startDate", "endDate"}:
+            # Convert to date object
+            json_dict[key] = datetime.datetime.strptime(value, "%Y-%m-%d").date()
+    return json_dict

@@ -1,7 +1,7 @@
 from flask import Response
 
 from json_resume_to_pdf.app import app, LOGGER
-from json_resume_to_pdf.github import get_resume
+from json_resume_to_pdf.github import get_resume, parse_resume
 from json_resume_to_pdf.make_pdf import makepdf
 from json_resume_to_pdf.validate_schema import validate_schema
 
@@ -17,10 +17,12 @@ def route_username(username):
 
     validation = validate_schema(resume)
     if validation != "":
-        LOGGER.warning(f"Resume does not conform to schema for {username=}")
+        LOGGER.warning(f"Resume does not conform to schema for {username=} \n {validation=}")
         return validation
 
-    file = makepdf(resume)
+    parsed_resume = parse_resume(resume)
+
+    file = makepdf(parsed_resume)
 
     response = Response(
         file,

@@ -1,12 +1,12 @@
 from unittest.mock import patch
 
-from json_resume_to_pdf.app.endpoints.username import route_username
+from json_resume_to_pdf.endpoints.username import route_username
 
 from tests.utils.code.safe_get_gist import safe_get_gist
 from tests.utils.code.compare_pdf import compare_pdf
 
 
-@patch("json_resume_to_pdf.logics.github.get_gist", safe_get_gist)
+@patch("json_resume_to_pdf.github.get_gist", safe_get_gist)
 def test_route_username_cv_N() -> None:
     """Test for json_resume.app.endpoints.route_username
     Assumes that no resume was published"""
@@ -15,7 +15,7 @@ def test_route_username_cv_N() -> None:
     assert actual == ""
 
 
-@patch("json_resume_to_pdf.logics.github.get_gist", safe_get_gist)
+@patch("json_resume_to_pdf.github.get_gist", safe_get_gist)
 def test_route_username_cv_Y() -> None:
     """Test for json_resume.app.endpoints.route_username
     Assumes that a resume was published"""
