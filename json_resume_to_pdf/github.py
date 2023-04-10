@@ -84,7 +84,7 @@ def parse_resume(resume: str) -> dict:
 
 
 def date_hook(json_dict):
-    for (key, value) in json_dict.items():
+    for key, value in json_dict.items():
         if key in {"startDate", "endDate"}:
             # Convert to date object
             json_dict[key] = datetime.datetime.strptime(value, "%Y-%m-%d").date()
