@@ -27,7 +27,6 @@ def test_validate_schema(resume, valid):
     """Test validate_schema."""
     with mock.patch("jsonschema.validate") as mock_validate:
         if valid:
-            mock_validate.return_value = None
             assert validate_schema(resume) == ""
         else:
             mock_validate.side_effect = Exception("Invalid schema")
