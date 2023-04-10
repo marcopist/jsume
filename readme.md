@@ -1,6 +1,6 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-# resume.JSON → resume.PDF
+# resume.json → resume.pdf
 
 **[TOTALLY A WORK IN PROGRESS!]** It does work. But kind of. And everything might get completely reengineered at any point. 🙃
 
@@ -44,8 +44,6 @@ There is continuous integration that runs the unit testing suite whenever any pu
 This is a containerised application (see `/Dockerfile`). Using containers is made necessary by the fact that this application has dependencies that cannot be declared within `setup.cfg` or `pyproject.toml`; the main one being `wkhtmltopdf`, which is allows the generation of a PDF from HTML.
 
 Similarly, the unit testing suite is containerised (see `/tests/Dockerfile`) as it requires `imagemagick` to compare PDFs pixel-wise - in addition to `wkhtmltopdf` to generate them.
-
-In general the source code is split up into two main subpackages. `logics` contains the business logics for pulling data - mainly from GitHub - and for generating PDFs. `app` wraps the `logics` and exposes them as an API.
 
 This service is deployed to Google Cloud Run. Continuous Deployment is activated, so on every push to `main` the container is re-built & deployed.
 

@@ -1,9 +1,11 @@
 def safe_get_gist(username: str, file: str) -> str | None:
     """Closure to mock github calls in json_resume.logics.github.get_gist
 
-    NOTE: if `username` == 'noresume' this mocks
+    NOTE: if `username == 'noresume'` this mocks
     the situation where an user has not published
-    a resume to github
+    a resume to github. `username == 'invalid_schema'` mocks
+    the situation where a user has published a resume
+    but it does not conform to the schema.
 
     Args:
         username (str): The name of the Github organisation or user
@@ -16,6 +18,16 @@ def safe_get_gist(username: str, file: str) -> str | None:
     """
     if username == "noresume" and file == "resume.json":
         return None
+    if username == "invalid_schema" and file == "resume.json":
+        return """
+            {
+                "basics":{
+                    "name":"John Doe",
+                    "label":"Programmer"
+                },
+                "fitness":"good"
+            }
+        """
     if file == "resume.json":
         with open("tests/utils/files/inputs/sample-resume.json") as f:
             return f.read()
