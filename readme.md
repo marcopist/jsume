@@ -24,14 +24,14 @@ As simple as:
 - Find your cv rendered as a PDF, enjoy!
 
 ## What an example looks like
-- My [`resume.json`](https://gist.githubusercontent.com/marcopist/619a7ed8bbcde6efa7df28e509d319e7/raw/resume.json)
-- My theme: [`marcopist/basic.jinja`](https://gist.githubusercontent.com/marcopist/1e390f2df03cad92ba21ae78129f679d/raw/basic.jinja)
-- My rendered [`cv.PDF`](https://json-resume-to-PDF-7dkwlpyqqa-ew.a.run.app/marcopist)
+- My [`resume.json`](https://gist.githubusercontent.com/marcopist/619a7ed8bbcde6efa7df28e509d319e7)
+- My theme: [`marcopist/basic.jinja`](https://gist.githubusercontent.com/marcopist/1e390f2df03cad92ba21ae78129f679d)
+- My rendered [cv.marcopist.com/marcopist](http://cv.marcopist.com/marcopist)
 
 ## How to contribute
 
 ### Make new themes!
-Check out my example theme: [`marcopist/basic.jinja`](https://gist.githubusercontent.com/marcopist/1e390f2df03cad92ba21ae78129f679d/raw/basic.jinja). Themes are Jinja templates in HTML. Feel free to add a CSS section in the `<style>` tags in the `<head>`.
+Check out my example theme: [`marcopist/basic.jinja`](https://gist.githubusercontent.com/marcopist/1e390f2df03cad92ba21ae78129f679d). Themes are Jinja templates in HTML. Feel free to add a CSS section in the `<style>` tags in the `<head>`.
 
 ### Contribute to the service
 Simply make a pull request. I will review it. See the tech specs below on some general architecture notes.
