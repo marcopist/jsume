@@ -27,7 +27,7 @@ def safe_get_gist(username: str, file: str) -> str | None:
                 },
                 "fitness":"good"
             }
-        """ 
+        """
     if file == "resume.json":
         with open("tests/utils/files/inputs/sample-resume.json") as f:
             return f.read()

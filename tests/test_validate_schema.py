@@ -20,12 +20,15 @@ invalid_resume = """
         },
         "fitness":"good"
     }
-""" 
+"""
 
-@pytest.mark.parametrize("resume, valid", [(valid_resume, True), (invalid_resume, False)])
+
+@pytest.mark.parametrize(
+    "resume, valid", [(valid_resume, True), (invalid_resume, False)]
+)
 def test_validate_schema(resume, valid):
     """Test validate_schema.
-    
+
     NB: need to mock jsonschema.validate because it is not
     possible to test the schema without a network connection.
     The schema used references a URL."""
@@ -37,4 +40,3 @@ def test_validate_schema(resume, valid):
             with pytest.raises(Exception) as excinfo:
                 validate_schema(resume)
             assert "Invalid schema" in str(excinfo.value)
-        

@@ -32,7 +32,7 @@ def get_gist(username: str, file: str) -> str | None:
             break
 
     if not url:
-        return None # pragma: no cover
+        return None  # pragma: no cover
 
     return re.get(url).text
 
