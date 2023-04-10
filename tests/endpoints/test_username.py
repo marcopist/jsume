@@ -1,4 +1,5 @@
 from unittest.mock import patch
+from pytest import mark
 
 from json_resume_to_pdf.endpoints.username import route_username
 
@@ -7,7 +8,7 @@ from tests.utils.code.compare_pdf import compare_pdf
 
 
 @patch("json_resume_to_pdf.github.get_gist", safe_get_gist)
-def test_route_username_cv_N() -> None:
+def test_route_username_not_published() -> None:
     """Test for json_resume.app.endpoints.route_username
     Assumes that no resume was published"""
     actual = route_username("noresume")
@@ -16,7 +17,17 @@ def test_route_username_cv_N() -> None:
 
 
 @patch("json_resume_to_pdf.github.get_gist", safe_get_gist)
-def test_route_username_cv_Y() -> None:
+def test_route_username_invalid_schema() -> None:
+    """Test for json_resume.app.endpoints.route_username
+    Assumes that no resume was published"""
+    actual = route_username("invalid_schema")
+
+    assert type(actual) == str
+    assert len(actual) > 0
+
+
+@patch("json_resume_to_pdf.github.get_gist", safe_get_gist)
+def test_route_username_valid() -> None:
     """Test for json_resume.app.endpoints.route_username
     Assumes that a resume was published"""
     with open("tests/utils/files/outputs/sample-resume.pdf", "rb") as f:
