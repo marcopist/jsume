@@ -50,7 +50,11 @@ def get_theme(author: str, theme: str) -> str | None:
         str | None: The Jinja template of the theme if it exists,
             otherwise it returns None.
     """
-    return get_gist(author, theme + ".jinja")
+    file_jinja = get_gist(author, theme + ".jinja")
+    if file_jinja:
+        return file_jinja
+    else:
+        return get_gist(author, theme + ".jinja.html")
 
 
 def get_resume(username: str) -> str | None:
