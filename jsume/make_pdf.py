@@ -11,9 +11,7 @@ from typing import Literal
 sandbox = SandboxedEnvironment()
 
 
-def makepdf(
-    resume_raw: Dict, author: str = "", theme: str = ""
-) -> None | Literal[True]:
+def makepdf(resume_raw: Dict, author: str = "", theme: str = "") -> None | bytes:
     """Returns a rendered pdf based on a json resume `resume_raw`.
     Extracts the theme information from the `resume_raw` input, but also
     tolerates explicitly defined temem through the `author` and `theme` arguments.
@@ -42,4 +40,6 @@ def makepdf(
 
     rendered = sandbox.from_string(template).render(resume=resume)
 
-    return pdfkit.from_string(rendered, options={"enable-local-file-access": ""})
+    pdf: bytes = pdfkit.from_string(rendered, options={"enable-local-file-access": ""})  # type: ignore
+
+    return pdf

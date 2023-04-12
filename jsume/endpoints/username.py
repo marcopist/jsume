@@ -9,7 +9,7 @@ from jsume.validate_schema import validate_schema
 
 
 @app.route("/<username>")
-def route_username(username):
+def route_username(username: str) -> str | Response:
     """Returns a pdf of the resume for the given username.
 
     args:
@@ -33,10 +33,16 @@ def route_username(username):
 
     parsed_resume = parse_resume(resume)
 
-    file = makepdf(parsed_resume)
+    pdf = makepdf(parsed_resume)
+
+    if pdf is None:
+        LOGGER.error(f"Can't generate pdf for {username=}")
+        return ""
+    else:
+        LOGGER.info(f"Generated pdf for {username=}")
 
     response = Response(
-        file,
+        pdf,
         mimetype="application/pdf",
         headers={"Content-Disposition": "inline;filename=resume.pdf"},
     )

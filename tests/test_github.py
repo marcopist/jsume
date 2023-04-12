@@ -7,5 +7,5 @@ from tests.utils.code.safe_get_gist import safe_get_gist
 
 @pytest.mark.parametrize("username, expected", [("noresume", None)])
 @patch("jsume.github.get_gist", safe_get_gist)
-def test_get_resume(username: str, expected: str | None) -> None:
+def test_get_resume(username: str, expected: str | None) -> None:  # type: ignore
     assert get_resume(username) == expected
