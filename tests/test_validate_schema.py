@@ -1,4 +1,4 @@
-from json_resume_to_pdf.validate_schema import validate_schema
+from jsume.validate_schema import validate_schema
 import pytest
 from unittest import mock
 

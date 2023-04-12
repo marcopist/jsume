@@ -5,7 +5,7 @@ from addict import Dict
 import pdfkit
 from .github import get_theme
 from jinja2.sandbox import SandboxedEnvironment
-from json_resume_to_pdf.app import LOGGER
+from jsume.app import LOGGER
 
 sandbox = SandboxedEnvironment()
 

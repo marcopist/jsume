@@ -1,4 +1,4 @@
-from json_resume_to_pdf.github import get_gist
+from jsume.github import get_gist
 
 
 def test_get_gist():

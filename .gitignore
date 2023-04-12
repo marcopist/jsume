@@ -8,6 +8,7 @@ output
 rundocker.sh
 **/devserver.py
 sandbox.py
+.vscode/
 
 ### Flask ###
 instance/*
