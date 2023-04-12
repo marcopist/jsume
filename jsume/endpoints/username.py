@@ -2,10 +2,10 @@
 
 from flask import Response
 
-from json_resume_to_pdf.app import app, LOGGER
-from json_resume_to_pdf.github import get_resume, parse_resume
-from json_resume_to_pdf.make_pdf import makepdf
-from json_resume_to_pdf.validate_schema import validate_schema
+from jsume.app import app, LOGGER
+from jsume.github import get_resume, parse_resume
+from jsume.make_pdf import makepdf
+from jsume.validate_schema import validate_schema
 
 
 @app.route("/<username>")

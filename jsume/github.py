@@ -4,7 +4,7 @@ which are used to collect resumes and themes."""
 import requests as re
 import json
 import datetime
-from json_resume_to_pdf.app import LOGGER
+from jsume.app import LOGGER
 
 
 def get_gist(username: str, file: str) -> str | None:
