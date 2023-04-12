@@ -6,11 +6,14 @@ import pdfkit
 from .github import get_theme
 from jinja2.sandbox import SandboxedEnvironment
 from jsume.app import LOGGER
+from typing import Literal
 
 sandbox = SandboxedEnvironment()
 
 
-def makepdf(resume_raw: Dict, author: str = None, theme: str = None) -> bytes:
+def makepdf(
+    resume_raw: Dict, author: str = "", theme: str = ""
+) -> None | Literal[True]:
     """Returns a rendered pdf based on a json resume `resume_raw`.
     Extracts the theme information from the `resume_raw` input, but also
     tolerates explicitly defined temem through the `author` and `theme` arguments.
@@ -27,11 +30,15 @@ def makepdf(resume_raw: Dict, author: str = None, theme: str = None) -> bytes:
     """
     resume = Dict(resume_raw)
 
-    if not (theme and author):
-        author = resume.meta.author
-        theme = resume.meta.theme
+    if theme == "" and author == "":
+        author = resume["meta"]["author"]
+        theme = resume["meta"]["theme"]
 
     template = get_theme(author, theme)
+
+    if template is None:
+        LOGGER.error("No theme found for %s/%s", author, theme)
+        return None
 
     rendered = sandbox.from_string(template).render(resume=resume)
 

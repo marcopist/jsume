@@ -26,7 +26,7 @@ invalid_resume = """
 @pytest.mark.parametrize(
     "resume, valid", [(valid_resume, True), (invalid_resume, False)]
 )
-def test_validate_schema(resume, valid):
+def test_validate_schema(resume: str, valid: bool) -> None:
     """Test validate_schema.
 
     NB: need to mock jsonschema.validate because it is not

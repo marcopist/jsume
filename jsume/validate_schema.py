@@ -4,12 +4,12 @@ import jsonschema
 import json
 
 
-def validate_schema(resume_str):
+def validate_schema(resume: str) -> str:
     """Validates the schema of the resume json.
     Returns True if the schema is valid, False otherwise.
 
     args:
-        resume_json (dict): The resume json to validate.
+        resume (str): The resume json to validate.
 
     returns:
         str: The error message if the schema is invalid, empty string otherwise.
@@ -17,10 +17,10 @@ def validate_schema(resume_str):
     with open("resources/schema.json") as f:
         schema = json.load(f)
 
-    resume = json.loads(resume_str)
+    resume_dict = json.loads(resume)
 
     try:
-        jsonschema.validate(resume, schema)
+        jsonschema.validate(resume_dict, schema)
         return ""
     except jsonschema.exceptions.ValidationError as e:
-        return e.message
+        return str(e.message)

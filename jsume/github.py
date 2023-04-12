@@ -4,6 +4,7 @@ which are used to collect resumes and themes."""
 import requests as re
 import json
 import datetime
+from typing import List, Dict, Any
 from jsume.app import LOGGER
 
 
@@ -73,9 +74,11 @@ def get_resume(username: str) -> str | None:
     gist = get_gist(username, "resume.json")
     if gist:
         return gist
+    else:
+        return None
 
 
-def parse_resume(resume: str) -> dict:
+def parse_resume(resume: str) -> Any:
     """Parses the resume json and converts the dates to date objects.
 
     Args:
@@ -87,7 +90,7 @@ def parse_resume(resume: str) -> dict:
     return json.loads(resume, object_hook=date_hook)
 
 
-def date_hook(json_dict):
+def date_hook(json_dict: Dict[Any, Any]) -> Dict[Any, Any]:
     for key, value in json_dict.items():
         if key in {"startDate", "endDate"}:
             # Convert to date object
